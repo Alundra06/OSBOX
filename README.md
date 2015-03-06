@@ -1,6 +1,10 @@
 # OSBOX
 OS-Box is an ambitous project to create a simple , easy to use CRM web app for non-profit but also for any other organization.
 
+To check out a demo , you can visit : osboxdemo.sadellah.com
+
+I've been workin gon this project for a year now and i feel i need to invite someone(s) to take it to the next level.
+
 The system includes:
 
     Customers and employees management portal
