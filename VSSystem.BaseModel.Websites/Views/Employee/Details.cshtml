@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+
+@model AKCPA.Data.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Account's Detail</h2>
+<hr />
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("User Name")
+        </dt>
+
+        <dd>
+            @ViewBag.UserName
+        </dd>
+        
+        
+         <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName) .
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName) .
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title) .
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire_Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hire_Date) .
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Salary) .
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SickLeave_Hrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SickLeave_Hrs) .
+        </dd>
+        
+
+    </dl>
+</div>
+<hr />
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+
+
+
+

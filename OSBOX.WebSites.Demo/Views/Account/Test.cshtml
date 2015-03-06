@@ -1,0 +1,59 @@
+﻿
+
+
+
+<p>Content here. <a class="alert" href=#>Alert!</a></p>
+<div class="bb-alert alert alert-info" style="display:none; position:absolute">
+    <span>The examples populate this alert with dummy content</span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@section scripts {
+    
+   
+
+
+    
+    <script>
+        $(document).on("click", ".alert", function (e) {
+            bootbox.prompt("What is your name?", function (result) {
+                //if (result === null) {
+                //    Notification.show("Prompt dismissed");
+                //} else {
+                //    Notification.show("Hi <b>" + result + "</b>");
+                //}
+            });
+        });
+
+
+
+
+        var PurrNotice = ' <div class="alertNotification alert-success"> <i class="fa fa-info-circle fa-2x"></i> ' + "ddd" + '</div>';
+
+
+
+
+        $(PurrNotice).purr();
+
+
+
+
+
+
+
+
+</script>
+
+}
+
+
+

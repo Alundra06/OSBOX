@@ -1,0 +1,155 @@
+﻿@model IEnumerable<OSBOX.Data.Models.PaymentModel>
+
+@{
+    ViewBag.Title = "Index";
+    SelectList CustomersList = ViewBag.CustomersList;
+}
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+<h2> Total number of payments = @ViewBag.TotalNumberofPayments || Total amount of payments =$@ViewBag.TotalAmountofPayments</h2>
+<hr />
+@using (Html.BeginForm("index", "Payment"))
+{
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-search"></span> Find by Bussiness account ID</button>
+                </span>
+                @Html.DropDownList("CustomerId", CustomersList,"Select a business ID", new { @class = "form-control", onchange = "$(this.form).submit();" })
+            </div><!-- /input-group -->
+
+        </div><!-- /.col-lg-6 -->
+
+
+        <div class="col-lg-6">
+            <div>
+                @Html.ActionLink("Show all", "Index", "Payment")
+            </div>
+        </div><!-- /.col-lg-6 -->
+
+
+
+    </div>
+    <hr />
+     <div class="row">
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-search"></span> Search by date</button>
+                </span>
+               
+            </div><!-- /input-group -->
+
+        </div><!-- /.col-lg-6 -->
+         <div class="col-md-4">
+             <div class="form-control">
+                 Start date:    @Html.JQueryUI().Datepicker("startDate")
+             </div>
+             </div><!-- /.col-lg-6 -->
+         <div class="col-md-4">
+             <div class="form-control">
+                 End date:    @Html.JQueryUI().Datepicker("endDate")
+             </div>
+         </div><!-- /.col-lg-6 -->
+
+
+        
+
+
+
+    </div>
+
+     <hr />
+}
+
+<table class="table table-bordered table-responsive  table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.Invoice_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.Customer.ID_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.receivedBy)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.Payment_Type.Payment_Name)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Invoice.Invoice_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Invoice.Customer.ID_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.receivedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment_Type.Payment_Name)
+                </td>
+               
+               
+                @*<td>
+
+                    @Html.ActionLink("Details", "Details", new { id = item.Payment_ID }) |
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Payment_ID }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Payment_ID })
+
+                </td>*@
+            </tr>
+        }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Invoices list","Index", "Invoice")
+</div>
+
+
+@* ----------------------- Extra Scripts ------------------------ *@
+@section scripts {
+
+
+    @*To show a notification message*@
+    <script>
+
+        if ("@ViewBag.Notificationmessage" != "") {
+            var PurrNotice = ' <div class="alertNotification alert-success alert-centered"> <i class="fa fa-info-circle fa-2x"></i> ' + '@Html.Raw((string)ViewBag.Notificationmessage)' + '</div>';
+            $(PurrNotice).purr();
+        }
+    </script>
+
+<script>
+    //show the laoding animation
+    $("form").submit(LoadingModal);
+</script>
+}

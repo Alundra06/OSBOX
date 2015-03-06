@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+
+
+@model PagedList.IPagedList<AKCPA.Data.Models.CustomerModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
+@*@model IEnumerable<scheduleMVC.Models.CustomerModel>*@
+
+
+@{
+    ViewBag.Title = "Costumers' List";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Find by business name <span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                    <input type="text" class="form-control" name="SearchString">
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                  
+                    <span class="input-group-btn">
+                        <span  class="btn btn-default" >@Html.ActionLink("Create New", "RegisterCustomer", "Account")</span>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+         </div>
+
+
+
+}
+<hr />
+<table class="table table-bordered table-responsive  table-hover">
+    <tr>
+
+
+        <th>
+            @Html.ActionLink("Business Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            First Name
+        </th>
+
+        <th>
+            Last Name
+        </th>
+
+        <th>
+            Phone Number
+        </th>
+
+        <th>
+            Email
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Business_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone_Number)
+            </td>
+            <td >
+                <a href="mailto:@Html.DisplayFor(modelItem => item.Email)"> @Html.DisplayFor(modelItem => item.Email)</a> 
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })|
+                @Html.ActionLink("Reset Password", "ResetPassword", new { id = item.CustomerId })
+            </td>
+        </tr>
+    }
+
+</table>
+@*@Html.ActionLink("Reset All Passwords", "ResetAllPasswords")*@
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

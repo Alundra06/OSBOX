@@ -1,0 +1,80 @@
+﻿
+@model OSBOX.Data.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Details";
+}
+@{
+    Layout = null;
+}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Details</h4>
+</div>
+
+
+
+<div class="modal-body">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("User Name")
+        </dt>
+
+        <dd>
+            @ViewBag.UserName
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hire_Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hire_Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SickLeave_Hrs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SickLeave_Hrs)
+        </dd>
+
+
+    </dl>
+
+   
+
+</div>
+
+<div class="modal-footer"> <button type="button" data-dismiss="modal" class="btn btn-warning">Close</button> </div>
+
+
+

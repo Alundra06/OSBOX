@@ -1,0 +1,173 @@
+﻿﻿@if (!User.IsInRole("Customer"))
+{
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+@model PagedList.IPagedList<AKCPA.Data.Models.TaskModel>
+@using PagedList.Mvc;
+
+@{
+    SelectListItem[] EmployeeNames = ViewBag.Employees;
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<h1>Tasks' list</h1>
+<hr />
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"> <span class="glyphicon glyphicon-search"></span></button>
+            </span>
+            <input type="text" class="form-control" name="SearchString" placeholder="Find by task name">
+        </div><!-- /input-group -->
+    </div>
+</div>
+
+<hr />
+
+@using (Html.BeginForm("Index", "Task", FormMethod.Get))
+{
+
+    <div class="row">
+        <div class="col-md-2">
+            @if (Roles.IsUserInRole("Administrator") || Roles.IsUserInRole("FrontDesk") || Roles.IsUserInRole("Employee"))
+            {
+                <span class="input-group-btn">
+                    <span class="btn btn-default">@Html.ActionLink("Create New", "Create")</span>
+                </span>
+            }
+        </div>
+
+        <div class="col-md-5">
+            @if (Roles.IsUserInRole("Administrator") || Roles.IsUserInRole("FrontDesk"))
+            {
+                <div class="input-group">
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> Assigned to:</button>
+                    </span>
+                    @Html.DropDownList("Employee_ID", EmployeeNames, new { @class = "form-control" })
+
+                </div><!-- /input-group -->
+            }
+        </div>
+
+        <div class="col-md-5">
+            <div class="input-group">
+                @if (Roles.IsUserInRole("Administrator") || Roles.IsUserInRole("FrontDesk"))
+                {
+                    <span class="input-group-btn">
+                        <span class="btn btn-default">
+
+                            Unassigned tasks @Html.CheckBox("option")
+                            <button class="btn btn-default" type="submit"> <span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </span>
+
+                }
+            </div><!-- /input-group -->
+        </div>
+    </div>
+
+
+
+
+
+}
+<hr />
+
+<table class="table table-bordered  table-hover">
+    <tr>
+        <th>
+            @Html.ActionLink("Task name", "Index", new { Message = "", sortOrder = ViewBag.NameSortParm })
+
+        </th>
+        <th>
+
+            @Html.ActionLink("Start Date", "Index", new { Message = "", sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Due Date", "Index", new { Message = "", sortOrder = ViewBag.DueDateSortParm })
+        </th>
+        <th>
+            @Html.DisplayName("Complete %")
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { Message = "", sortOrder = ViewBag.StatusSortParm })
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+
+        <th>
+            @Html.DisplayName("Assigned to")
+        </th>
+        <th>
+            @Html.DisplayName("Customer")
+        </th>
+        <th>
+            @Html.DisplayName("File name")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Business_Name)
+            </td>
+            <td>
+
+
+                @foreach (var item2 in item.Files)
+                {
+                    @Html.ActionLink(item2.Name, "DownloadFile", "DropBox", new { filePath = (item2.FolderPath + "/" + item2.Name), taction = "index", tcontroller = "Task" }, null)
+                    <b>|</b>
+                }
+
+            </td>
+
+            <td>
+                @if (!Roles.IsUserInRole("Customer"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TasksID });<b>|</b>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TasksID }) <b>|</b>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.TasksID })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

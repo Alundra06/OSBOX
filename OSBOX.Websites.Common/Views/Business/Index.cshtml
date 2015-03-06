@@ -1,0 +1,225 @@
+﻿@{
+	Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+
+@model PagedList.IPagedList<OSBOX.Data.Models.BusinessModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+	ViewBag.Title = "Business list";
+}
+<h2>@ViewBag.Title</h2>
+
+
+
+
+
+@using (Html.BeginForm("Index", "Business", FormMethod.Get))
+
+{
+
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-info" type="submit">Find by business name <span class="glyphicon glyphicon-search"></span></button>
+				</span>
+				<input type="text" class="form-control" name="SearchString">
+			</div><!-- /input-group -->
+		</div><!-- /.col-lg-6 -->
+	   
+	</div>
+
+
+
+   }
+
+
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+<table class="table table-bordered table-responsive  table-hover">
+	<thead>
+		<tr>
+			<th>
+				@*@Html.DisplayNameFor(model => model.Description)*@
+				@Html.ActionLink("Business Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+			</th>
+			<th>
+				@*@Html.DisplayNameFor(model=>model.Customer.ID_Code)*@
+				@Html.ActionLink("ID Code", "Index", new { sortOrder = ViewBag.IDCodeSortParm })
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().FIN)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().CR)
+			</th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().SUTA)
+            </th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().Entity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+			</th>
+			
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().Info)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().Div)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstOrDefault().EFTPS)
+			</th>
+
+			<th>Options</th>
+		</tr>
+	</thead>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Customer.ID_Code)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.FIN)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CR)
+			</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SUTA)
+            </td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Entity)
+			</td>
+  
+			<td>
+				@Html.DisplayFor(modelItem => item.Status)
+			</td>
+			
+			<td>
+				@Html.DisplayFor(modelItem => item.Info)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Div)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.EFTPS)
+			</td>
+			
+
+@* ---------------------------------------------------------------- *@
+@* ----------------------- The options menu ------------------------*@
+			<td>
+
+				<div class="btn-group">
+					<a class="btn btn-info" href="#"><i class="fa fa-wrench fa-fw"></i></a>
+					<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+						<span class="fa fa-caret-down"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+
+							@Html.ActionLink("Edit", "Edit", new { id = item.BusinessID })
+						</li>
+						<li>
+							@*@Html.ActionLink("Details", "Details", new { id = item.CustomerId }, new { @class = "ajax-popup-link" })*@
+							<a data-toggle="modal" href="@Url.Action("details", "Business", new { id = item.BusinessID })" data-target="#responsive">Details</a>
+						</li>
+						<li>
+							@Html.ActionLink("Delete", "Delete", new { id = item.BusinessID })
+							@*<a data-toggle="modal" href="@Url.Action("Delete", "Customer", new { id = item.CustomerId })" data-target="#responsive">Delete</a>*@
+						</li>
+						
+
+					</ul>
+				</div>
+			</td>
+@* ----------------------------------------------------------------- *@        
+@* ------------------------ End of options menu -------------------- *@
+
+
+
+		</tr>
+	}
+
+</table>
+
+
+@* ----------------------------------------------------------------- *@
+@* ------------------------ Display paged numbers -------------------- *@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+	new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+@* ----------------------------------------------------------------- *@
+@* ----------------------------------------------------------------- *@
+
+
+@*
+    ////////////////////////////////
+    @* popup integration*@
+@*   ////////////////////////////////*@
+
+
+<div id="responsive" class="modal container fade " data-backdrop="static" data-keyboard="false" tabindex="-1" style="display: none;">
+
+    <div class="modal-body">
+        <i class="fa fa-spinner fa-spin fa-4x"></i> Loading data, please wait
+    </div>
+
+</div>
+
+
+
+
+
+@* ----------------------- Extra Scripts ------------------------ *@
+@section scripts {
+
+<script>
+		function getTextBoxContent() {
+			return document.getElementById('SearchString').value;
+		}
+</script>
+
+	@*To show a notification message*@
+	<script>
+
+	if ("@ViewBag.Notificationmessage" != "")
+	{
+		var PurrNotice = ' <div class="alertNotification alert-success alert-centered"> <i class="fa fa-info-circle fa-2x"></i> ' + '@Html.Raw((string)ViewBag.Notificationmessage)' + '</div>';
+	$(PurrNotice).purr();
+	}
+	</script>
+}

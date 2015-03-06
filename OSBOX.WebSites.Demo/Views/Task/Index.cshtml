@@ -1,0 +1,206 @@
+﻿@model PagedList.IPagedList<OSBOX.Data.Models.TaskModel>﻿
+
+
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Tasks' list";
+}
+
+@if (!User.IsInRole("Customer"))
+{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+
+
+@*@{
+    SelectListItem[] EmployeeNames = ViewBag.Employees;
+}*@
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<h1>Tasks' list</h1>
+
+
+<p>
+@if (!Roles.IsUserInRole("Customer"))
+            {
+                @*@Html.ActionLink("Create New", "Create", "Task", new { @class = "btn btn-info" })*@
+
+
+    <div class="btn-group">
+        <a class="btn btn-primary" href="#"><i class="fa fa-diamond fa-fw"></i> Options</a>
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="fa fa-caret-down"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="~/task/create"><i class="fa fa-plus-circle fa-fw"></i> Create a new task</a></li>
+            <li><a href="#"><i class="fa fa-search-plus fa-fw"></i> search for a task</a></li>
+            @*<li><a href="#"><i class="fa fa-ban fa-fw"></i> Ban</a></li>
+    <li class="divider"></li>
+    <li><a href="#"><i class="i"></i> Make admin</a></li>*@
+        </ul>
+    </div>
+
+
+
+
+            }
+</p>
+
+
+@* To display the page numbers and the current page *@
+@* --------------------------------------------------- *@
+
+
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+
+<table class=" table-bordered table-responsive  table-hover  table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Task name", "Index", new { Message = "", sortOrder = ViewBag.NameSortParm })
+
+            </th>
+            <th>
+
+                @Html.ActionLink("Start Date", "Index", new { Message = "", sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Due Date", "Index", new { Message = "", sortOrder = ViewBag.DueDateSortParm })
+            </th>
+            <th>
+                @Html.DisplayName("Complete %")
+            </th>
+            <th>
+                @Html.ActionLink("Status", "Index", new { Message = "", sortOrder = ViewBag.StatusSortParm })
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+
+            <th>
+                @Html.DisplayName("Assigned to")
+            </th>
+            <th>
+                @Html.DisplayName("Customer")
+            </th>
+            <th>
+                @Html.DisplayName("File name")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Business_Name)
+            </td>
+            <td>
+
+
+                @foreach (var item2 in item.Files)
+                {
+
+                    @Html.ActionLink(item2.Name, "DownloadFileFromDropBox", "File", new { filePath = (item2.FolderPath + "/" + item2.Name) }, null)
+                    //@Url.Action("../File/DownloadFileFromDropBox/", new { FilePath = item2.FolderPath + "/" + item2.Name })
+                    <b>|</b>
+                }
+
+            </td>
+
+            <td>
+                @if (!Roles.IsUserInRole("Customer"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TasksID }, new { @class = "ajax-popup-link" });<b>|</b>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TasksID }, new { @class = "ajax-popup-link" }) <b>|</b>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.TasksID }, new { @class = "ajax-popup-link" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+
+
+
+
+@*
+    ////////////////////////////////
+    @*Magnific popup integration*@
+ @*   ////////////////////////////////*@
+
+
+
+
+
+<!-- Magnific Popup core CSS file -->
+
+
+
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- Magnific Popup core JS file -->
+<script src="~/Scripts/jquery.magnific-popup.js"></script>
+
+<script>
+    var $i = jQuery.noConflict();
+    $i('.ajax-popup-link').magnificPopup({
+        type: 'Ajax',
+        modal: true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        removalDelay: 300,
+        mainClass: 'mfp-wrap'
+    });
+    $i(document).on('click', '.popup-modal-dismiss', function (e) {
+        e.preventDefault();
+        $i.magnificPopup.close();
+    });
+
+</script>

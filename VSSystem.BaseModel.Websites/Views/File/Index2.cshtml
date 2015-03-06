@@ -1,0 +1,47 @@
+﻿
+<head title="upload a file">
+    <link rel="stylesheet" type="text/css" href="../Scripts/DhtmlxPro/dhtmlx.css">
+    <script src="../Scripts/DhtmlxPro/dhtmlxcommon.js"></script>
+    <script src="../Scripts/DhtmlxPro/dhtmlxtree.js"></script>
+    <script src="../Scripts/DhtmlxPro/dhtmlxtree_start.js"></script>
+    <script src="../Scripts/DhtmlxPro/dhtmlx.js"></script>
+</head>
+
+<body>
+    <div id="treeBox"  style="width:200;height:200"></div>
+   
+    @*<div class="dhtmlxTree"
+         id="treeboxbox_tree"
+         setimagepath="../Scripts/DhtmlxPro/imgs/dhxtree_skyblue/"
+         style="width:250px; height:218px;overflow:auto;">
+        <ul>
+            <li>
+                Root
+                <ul>
+                    <li>
+                        Child1
+                        <ul>
+                            <li>Child 1-1</li>
+                        </ul>
+                    <li>Child2</li>
+                    <li><b>Bold</b> <i>Italic</i></li>
+                </ul>
+            </li>
+        </ul>
+    </div>*@
+    
+    <script>
+        //var tree = new dhtmlXTreeObject("treeBox", "100%", "100%", 0);
+        var tree2 = new dhtmlXTreeObject("treeBox", "100%", "100%", 0);
+        tree2.setImagePath("../Scripts/DhtmlxPro/imgs/dhxtree_skyblue/");
+        tree2.setDataMode("json");
+        tree2.loadJSON("/file/GetFolderStructure");
+        //tree2.loadJSON("/task/GetTasks");
+        //var myTree = dhtmlXTreeFromHTML("treeboxbox_tree"); // for script conversion
+    </script>
+</body>
+   
+
+
+     
+

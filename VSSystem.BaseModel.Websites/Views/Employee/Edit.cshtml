@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+
+@model AKCPA.Data.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit employee's account</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       
+     
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Employee_ID)
+        @Html.HiddenFor(model => model.UserId)
+
+      
+            <div class="form-group">
+                @Html.Label("User Name", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <h4><span class="label label-info "> @ViewBag.UserName </span></h4> 
+                    
+                </div>
+            </div>
+
+        <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                </div>
+            </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hire_Date, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+               
+                @Html.JQueryUI().DatepickerFor(model => model.Hire_Date, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Manager_ID, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Manager_ID, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Salary, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Salary, new { @class = "form-control" })
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

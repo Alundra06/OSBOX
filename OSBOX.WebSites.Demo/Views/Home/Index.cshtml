@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "OSBox";
+}
+
+@*<div class="jumbotronVisio container bd-orange">*@
+
+<div class="bgjumbotronOSBOX"></div>
+<div class="jumbotronOSBOX">
+    @* <div class="container ">*@
+
+    <h1>
+        <i class="fa fa-connectdevelop fa-2x fa-border label-warning "></i>
+
+        @*<img src="~/Content/images/Letter-O-black-icon.png" />*@Welcome to OS-Box
+    </h1>
+    <blockquote class="blockquote-reverse">
+
+        <p><strong>OS-Box is an all-in-one solution that offers: Scheduler, CRM, Client/Employee portal and document management system   </strong></p>
+    </blockquote>
+
+    @*</div>*@
+</div>
+
+<div class="well well-lg">For the demo purposes, please go to @Html.ActionLink("Employee portal", "Index", "Employee") and use these crendials: username=<b>admin</b>  password=<b>password</b> </div>
+<div class="row">
+    <div class="col-lg-4 col-sm-6">
+        <h3>
+            @*<i class="fa fa-file-o"></i>*@
+            <img src="~/Content/images/HD-Thunderbolt-icon.png" /> Customers portal
+        </h3>
+        <p>Customer Portal enables you to provide customers with highly personalized and interactive services </p>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <h3>
+            <img src="~/Content/images/Photos-icon.png" /> CRM
+        </h3>
+        <p>Manage business relationships and the data and information associated with them.</p>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <h3>
+            <img src="~/Content/images/iDrive-icon.png" />"On the cloud"
+        </h3>
+        <p>No need to worry about: security, scalability, access, and data management </p>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <h3>
+            <img src="~/Content/images/Smart-icon.png" /> File management
+        </h3>
+        <p>Employees and customers can access their files from a central repository , secured by access roles</p>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <h3>
+            <img src="~/Content/images/Utilities-icon.png" /> Task management
+        </h3>
+        <p>Task lists and tasks help you easily keep track of every job on a project, quickly telling you the who, when and why!</p>
+    </div>
+    <div class="col-lg-4 col-sm-6">
+        <h3>
+            <img src="~/Content/images/Group-icon.png" />Scheduler
+        </h3>
+        <p>simplifies the process of scheduling task and offer different views: Clandar, list and agenda</p>
+    </div>
+    <div></div>
+
+</div>
+
+
+
+@*Parralax effect
+    source: http://stackoverflow.com/questions/20914711/bootstrap-3-jumbotron-background-image-effect*@
+
+
+@section scripts {
+
+<script>
+    var $i = jQuery.noConflict();
+    var jumboHeight = $i('.jumbotronOSBOX').outerHeight();
+    var jumboHeight = 350;
+    function parallax() {
+        var scrolled = $i(window).scrollTop();
+        $i('.bgjumbotronOSBOX').css('height', (jumboHeight - scrolled) + 'px');
+    }
+
+    $i(window).scroll(function (e) {
+        parallax();
+    });
+
+
+</script>
+
+
+
+
+
+
+    @* --------------------------------------------------------------------------------------------------- *@
+    @* ------------------- Google Analytics implementation ----------------------------------------------- *@
+    @* --------------------------------------------------------------------------------------------------- *@
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-60393910-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }

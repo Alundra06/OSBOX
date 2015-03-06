@@ -1,0 +1,133 @@
+﻿@model OSBOX.Data.Models.InvoiceModel
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Invoice</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Invoice_ID)
+        @Html.HiddenFor(model => model.CustomerId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Number, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Invoice_Number, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Number)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Invoice_Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">                
+                @Html.JQueryUI().DatepickerFor(model => model.Invoice_Date, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Date)
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Invoice_Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Amount)
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Due_Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Due_Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Due_Amount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DueDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.JQueryUI().DatepickerFor(model => model.DueDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DueDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paid_Status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Paid_Status, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Paid_Status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment_Term, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Payment_Term, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Payment_Term)
+            </div>
+        </div>
+
+        @*<div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.CustomerId, "CustomerId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                dsfsf
+                @Html.DropDownList("CustomerId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CustomerId)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Note, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Note, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Note)
+            </div>
+        </div>
+
+
+
+
+            <div>
+                <input type="submit" value="Save" class="btn btn-success" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+        </div>
+
+    } @*//End of the form*@
+
+
+    @section Scripts {
+
+        <script>
+            //show the laoding animation
+            $("form").submit(LoadingModal);
+
+        </script>
+    }

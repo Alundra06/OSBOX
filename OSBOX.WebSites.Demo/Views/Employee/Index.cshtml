@@ -1,0 +1,145 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+@model IEnumerable<OSBOX.Data.Models.EmployeeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employees list</h2>
+
+<hr />
+    <div class="input-group">
+
+        <span class="input-group-btn">
+            @*<span class="btn btn-info">@Html.ActionLink("Create New", "employeeregister", "Account")</span>*@
+            <a href="/Account/employeeregister" class="btn btn-info">Create new</a>
+        </span>
+    </div><!-- /input-group -->
+    
+<hr />
+<table class="table table-bordered table-responsive  table-hover">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+
+            <th>
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.ActionLink("Hire Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hire_Date)
+                </td>
+                @if (item.Employee_ID != 7)
+                {
+
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Employee_ID }, new { @class = "ajax-popup-link" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Employee_ID }, new { @class = "ajax-popup-link" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Employee_ID }, new { @class = "ajax-popup-link" }) |
+                        @Html.ActionLink("Reset Password", "ResetPassword", new { id = item.Employee_ID }, new { @class = "ajax-popup-link" })
+                    </td>*@
+                    @* ---------------------------------------------------------------- *@
+                    @* ----------------------- The options menu ------------------------*@
+                    <td>
+
+                        <div class="btn-group">
+                            <a class="btn btn-info" href="#"><i class="fa fa-wrench fa-fw"></i></a>
+                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="fa fa-caret-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Employee_ID }, new { @class = "ajax-popup-link" })
+                                    @*<a data-toggle="modal" href="@Url.Action("Edit", "Customer", new { id = item.CustomerId })" data-target="#responsive">Edit</a>*@
+                                </li>
+                                <li>
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.CustomerId }, new { @class = "ajax-popup-link" })*@
+                                    <a data-toggle="modal" href="@Url.Action("details", "Employee", new { id = item.Employee_ID })" data-target="#responsive">Details</a>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Employee_ID })
+                                    @*<a data-toggle="modal" href="@Url.Action("Delete", "Customer", new { id = item.CustomerId })" data-target="#responsive">Delete</a>*@
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    @*@Html.ActionLink("Reset Password", "ResetPassword", new { id = item.CustomerId }, new {data_toggle="modal", @class="btn btn-info", data_target="#responsive" })*@
+                                    @*<a data-toggle="modal" href="@Url.Action("ResetPassword", "Customer", new { CustomerID = item.CustomerId })" data-target="#responsive">Reset Password</a>*@
+                                    <a href="@Url.Action("ResetPassword", "Employee", new { EmployeeID = item.Employee_ID })">Reset Password</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </td>
+                    @* ----------------------------------------------------------------- *@
+                    @* ------------------------ End of options menu -------------------- *@
+                }
+            </tr>
+        }
+
+</table>
+
+@*
+    ////////////////////////////////
+    @* popup integration*@
+@*   ////////////////////////////////*@
+
+
+<div id="responsive" class="modal container fade " data-backdrop="static" data-keyboard="false" tabindex="-1" style="display: none;">
+
+    <div class="modal-body">
+        <i class="fa fa-spinner fa-spin fa-4x"></i> Loading data, please wait
+    </div>
+
+</div>
+
+
+@section scripts {
+
+
+
+
+    @*To show a notification message*@
+    <script>
+
+        if ("@ViewBag.Notificationmessage" != "") {
+            var PurrNotice = ' <div class="alertNotification alert-success alert-centered"> <i class="fa fa-info-circle fa-2x"></i> ' + '@Html.Raw((string)ViewBag.Notificationmessage)' + '</div>';
+            $(PurrNotice).purr();
+        }
+
+    </script>
+}
+
+
+

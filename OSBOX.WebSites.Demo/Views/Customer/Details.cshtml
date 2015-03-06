@@ -1,0 +1,227 @@
+﻿@*@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}*@
+
+@model OSBOX.Data.Models.CustomerModel
+
+@{
+    ViewBag.Title = "Details";
+}
+@{
+    Layout = null;
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Details</h4>
+</div>
+
+
+
+
+    <div class="modal-body">
+
+
+
+
+        <div id="content">
+            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                <li class="active"><a href="#Details" data-toggle="tab">Details</a></li>
+                <li><a href="#Addresses" data-toggle="tab">Addresses</a></li>
+                @*<li><a href="#yellow" data-toggle="tab">Yellow</a></li>
+                <li><a href="#green" data-toggle="tab">Green</a></li>
+                <li><a href="#blue" data-toggle="tab">Blue</a></li>*@
+            </ul>
+            <div id="my-tab-content" class="tab-content">
+                <div class="tab-pane active" id="Details">
+                 
+                   
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ID_Code)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ID_Code)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name_Prefix)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name_Prefix) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Last_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Last_Name) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Middle_name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Middle_name) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.First_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.First_Name) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Business_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Business_Name) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LegalName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LegalName) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone_Number)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone_Number) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Cell_Phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cell_Phone) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fax)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Fax) .
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email) .
+                        </dd>
+
+                    </dl>
+
+
+
+
+                </div>
+                <div class="tab-pane" id="Addresses">
+                 
+                   
+                   
+                        <p></p>
+                        @foreach (var item in Model.Addresses)
+                        {
+                            <dl class="dl-horizontal alert-info">
+                                <dt>
+                                    @Html.DisplayNameFor(modelItem => item.Street_Adr1)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(modelItem=> item.Street_Adr1)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(modelItem => item.Street_Adr2)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(modelItem => item.Street_Adr2)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(modelItem => item.City)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(modelItem => item.State)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(modelItem => item.State)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(modelItem => item.ZipCode)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(modelItem => item.ZipCode)
+                                </dd>
+                            </dl>
+
+                        }
+                           
+
+
+
+</div>
+
+            </div>
+        </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |*@
+       
+
+    </div>
+<div class="modal-footer"> <button type="button" data-dismiss="modal" class="btn btn-warning">Close</button> </div>

@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+
+<h2>Tasks' list</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        @if (Roles.IsUserInRole("Administrator") || Roles.IsUserInRole("FrontDesk") || Roles.IsUserInRole("Employee"))
+        {
+            <span class="input-group-btn">
+                <span class="btn btn-default">@Html.ActionLink("Create New", "Create")</span>
+            </span>
+        }
+    </div>
+</div>
+<div class="row"><br /></div>
+
+
+
+<script type="text/javascript" src="../Scripts/DhtmlxPro/dhtmlXGrid.js"></script>
+<link rel="STYLESHEET" type="text/css" href="../Scripts/DhtmlxPro/dhtmlxgrid.css">
+<script type="text/javascript" src="../Scripts/DhtmlxPro/dhtmlxcommon.js"></script>
+<style>
+    .even {
+        background-color: #feea70;
+    }
+
+    .uneven {
+        background-color: #d34a0a
+    }
+</style>
+
+@*@using (Html.JQueryUI().Begin(new Dialog().AutoOpen(false)
+    .TriggerClick("#triggerButton")))
+{
+    <p>This dialog is opened with a button.</p>
+    <p>Please click the X at the top right corner to close it.</p>
+}
+<p>@Html.JQueryUI().Button("Click me!", new { id = "triggerButton" })</p>*@
+
+
+<div id="gridbox" style="width:800px;height:600px;overflow:hidden"></div>
+<script>
+    mygrid = new dhtmlXGridObject('gridbox');
+    mygrid.setImagePath("../Scripts/DhtmlxPro/imgs/");          //the path to images required by grid
+    mygrid.setHeader("&nbsp,TaskName,Complete,Status,Description,StartDate,DueDate,Assignedto,Customer,,",null,"background-color:red");
+    mygrid.attachHeader("&nbsp,&nbsp;,&nbsp;,#combo_filter,&nbsp;,&nbsp;,&nbsp;,#combo_filter,#combo_filter,&nbsp,&nbsp");
+    mygrid.setColumnIds("&nbsp,TaskName,Complete,Status,Description,StartDate,DueDate,Assignedto,Customer,Update,Delete");//the headers of columns
+    mygrid.setInitWidths("40,220,70,100,250,80,80,100,180,50,50");          //the widths of columns
+    mygrid.enableAutoWidth(true);
+    mygrid.setColTypes("cntr,link,ro,ro,ro,ro,ro,ro,ro,link,link");
+    mygrid.setColSorting("na,str,str,str,str,date,date,str,str,str,str");          //the sorting types
+   
+    mygrid.setStyle("background-color:red");
+
+    mygrid.init();      //finishes initialization and renders the grid on the page
+    
+    //mygrid.enableAlterCss("even", "uneven");
+   // mygrid.setColumnColor(",d34a0a,,,,,,,,darkgreen,darkgreen");
+    
+    //mygrid.enableAutoHeight();
+   
+    mygrid.load("/task/GetTasks", "js");
+
+
+    mygrid.attachEvent("onXLE", function () {
+        //Hide the modal waiting screen
+        document.getElementById("Loading").style.display = "none";
+    })
+
+</script>
+
+
+
+<div id="Loading" class="modal">
+    <div class="title">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                <span class="sr-only">Loading please wait!</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*Add the popup controls*@
+
+
+<!-- Magnific Popup core CSS file -->
+
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- Magnific Popup core JS file -->
+<script src="~/Scripts/jquery.magnific-popup.js"></script>
+
+
+
+@*<a href="#test-form" class="ajax-popup-link">Show inline popup</a>*@
+@*<a href="/task/Edit/3d1e5a83-b17d-4c24-b811-f037c8dc687f" class="ajax-popup-link">Show inline popup</a>*@
+<a href="/task/Edit/3d1e5a83-b17d-4c24-b811-f037c8dc687f" class="ajax-popup-link">Show inline popup</a>
+
+
+<script>
+    var $i = jQuery.noConflict();
+    $i('.ajax-popup-link').magnificPopup({
+        type: 'Ajax',
+        modal:true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        removalDelay: 300,
+        mainClass: 'mfp-wrap'
+    });
+
+</script>
+
+
+
+
+
+
+
+

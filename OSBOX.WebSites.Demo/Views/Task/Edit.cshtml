@@ -1,0 +1,155 @@
+﻿@*Task Edit*@
+
+@*@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}*@
+<!-- Magnific Popup core CSS file -->
+
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+
+
+
+@model OSBOX.Data.Models.TaskModel
+
+@{
+    ViewBag.Title = "Edit";
+    SelectListItem[] CustomerNames = ViewBag.Customers;
+    SelectListItem[] EmployeeNames = ViewBag.Employees;
+}
+
+@*<h2>Edit</h2>*@
+
+
+
+
+
+
+@using (Html.BeginForm("Edit", "Task", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal white-popup-block ">
+        <fieldset>
+            <legend>Edit</legend>
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.TasksID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.JQueryUI().DatepickerFor(model => model.StartDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DueDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.JQueryUI().DatepickerFor(model => model.DueDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DueDate)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Complete, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Complete, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Complete)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control wide", style = "height:250px;" })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Priority, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Priority, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Priority)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Status, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Status)
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AssignementDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.JQueryUI().DatepickerFor(model => model.AssignementDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AssignementDate)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.JQueryUI().DatepickerFor(model => model.CreationDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CreationDate)
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CompletionDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.JQueryUI().DatepickerFor(model => model.CompletionDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CompletionDate)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Employee Name", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Employee_ID", EmployeeNames, new { @class = "form-control" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Customer Name", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CustomerID", CustomerNames, new { @class = "form-control" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Upload file", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="fileUpload" name="fileUpload" size="23" />
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" /> | 
+                    <a class="popup-modal-dismiss" href="#">Dismiss</a>
+                </div>
+            </div>
+            </fieldset>
+</div>
+}
+
+

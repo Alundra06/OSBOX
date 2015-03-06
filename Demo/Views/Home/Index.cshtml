@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "VisioTech";
+}
+
+@*<div class="jumbotronVisio container bd-orange">*@
+
+<div class="bgjumbotronVisio"></div>
+<div class="jumbotronVisio">
+    @* <div class="container ">*@
+
+    <h1>
+        <img src="~/Content/images/Letter-V-orange-icon.png" />Welcome to VisioBox
+    </h1>
+    <blockquote class="blockquote-reverse">
+
+        <p><strong>VisioBox is an all-in-one solution that offers: Scheduler, CRM and a Document management system that could be personlized based on the organization's need  </strong></p>
+    </blockquote>
+    <br />
+    @*</div>*@
+</div>
+
+
+
+<div class="col-lg-4 col-sm-6">
+    <h3>
+        @*<i class="fa fa-file-o"></i>*@
+        <img src="~/Content/images/HD-Thunderbolt-icon.png" /> Customers portal
+    </h3>
+    <p>Customer Portal enables you to provide customers with highly personalized and interactive services </p>
+</div>
+<div class="col-lg-4 col-sm-6">
+    <h3>
+        <img src="~/Content/images/Photos-icon.png" /> CRM
+    </h3>
+    <p>Manage business relationships and the data and information associated with them.</p>
+</div>
+<div class="col-lg-4 col-sm-6">
+    <h3>
+        <img src="~/Content/images/iDrive-icon.png" />"On the cloud"
+    </h3>
+    <p>No need to worry about: security, scalability, access, and data management </p>
+</div>
+<div class="col-lg-4 col-sm-6">
+    <h3>
+        <img src="~/Content/images/Smart-icon.png" /> File management
+    </h3>
+    <p>Employees and customers can access their files from a central repository , secured by access roles</p>
+</div>
+<div class="col-lg-4 col-sm-6">
+    <h3>
+        <img src="~/Content/images/Utilities-icon.png" /> Task management
+    </h3>
+    <p>Task lists and tasks help you easily keep track of every job on a project, quickly telling you the who, when and why!</p>
+</div>
+<div class="col-lg-4 col-sm-6">
+    <h3>
+        <img src="~/Content/images/Group-icon.png" />Scheduler
+    </h3>
+    <p>simplifies the process of scheduling task and offer different views: Clandar, list and agenda</p>
+</div>
+<div></div>
+
+<div class="col-md-1">
+    <h2></h2>
+
+
+    </p>
+    </p>
+
+</div>
+
+
+
+@*Parralax effect
+    source: http://stackoverflow.com/questions/20914711/bootstrap-3-jumbotron-background-image-effect*@
+
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script>
+    var $i = jQuery.noConflict();
+    var jumboHeight = $i('.jumbotronVisio').outerHeight();
+    var jumboHeight = 350;
+    function parallax() {
+        var scrolled = $i(window).scrollTop();
+        $i('.bgjumbotronVisio').css('height', (jumboHeight - scrolled) + 'px');
+    }
+
+    $i(window).scroll(function (e) {
+        parallax();
+    });
+
+
+</script>

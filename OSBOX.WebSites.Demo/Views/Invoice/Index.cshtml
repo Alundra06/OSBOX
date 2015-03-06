@@ -1,0 +1,201 @@
+﻿@model PagedList.IPagedList<OSBOX.Data.Models.InvoiceModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+<h2>Invoices Index</h2>
+
+@using (Html.BeginForm("Index", "Invoice", FormMethod.Get))
+{
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="submit">Find by Invoice number <span class="glyphicon glyphicon-search"></span></button>
+                </span>
+                <input type="text" class="form-control" name="SearchString">
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="input-group">
+
+                <span class="input-group-btn">
+
+                    <a href="/Invoice/Create" class="btn btn-info">Create new</a>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+
+
+
+}
+<h2> Total amount of invoices =$@ViewBag.TotalInvoiceAmount</h2>
+
+<table class="table table-bordered table-responsive  table-hover">
+    <thead>
+        <tr>
+
+
+            <th>
+                @*@Html.DisplayNameFor(model=> model.FirstOrDefault().Customer.Business_Name)*@
+                @Html.ActionLink("Business Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("ID Code", "Index", new { sortOrder = ViewBag.IDCodeSortParm })
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().Customer.ID_Code)*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().Invoice_Amount)*@
+                @Html.ActionLink("Invoice Amount", "Index", new { sortOrder = ViewBag.InvoiceAmountSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Invoice_Number)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().Invoice_Date)*@
+                @Html.ActionLink("Invoice Date", "Index", new { sortOrder = ViewBag.InvoiceDateSortParm })
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().Due_Amount)*@
+                @Html.ActionLink("Due Amount", "Index", new { sortOrder = ViewBag.InvoiceDueAmountSortParm })
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().DueDate)*@
+                @Html.ActionLink("Due Date", "Index", new { sortOrder = ViewBag.InvoiceDueDateSortParm })
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().Payment_Term)*@
+                @Html.ActionLink("Payment Term", "Index", new { sortOrder = ViewBag.InvoicePaymentTermSortParm })
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstOrDefault().ServiceType.ServiceTypeName)*@
+                @Html.ActionLink("Service type", "Index", new { sortOrder = ViewBag.InvoiceServiceTypeSortParm })
+            </th>
+
+
+           
+
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Invoice_ID })<br />
+                    @Html.ActionLink("Details", "Details", new { id = item.Invoice_ID })<br />
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Invoice_ID })
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Business_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.ID_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Invoice_Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Invoice_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Invoice_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Due_Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment_Term)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceType.ServiceTypeName)
+                </td>
+
+
+
+                <td>
+
+                    <div class="btn-group">
+                        <a class="btn btn-info" href="#"><i class="fa fa-wrench fa-fw"></i></a>
+                        <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="fa fa-caret-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Invoice_ID}, new { @class = "ajax-popup-link" })
+                            </li>
+                            <li>
+                              
+                                <a data-toggle="modal" href="@Url.Action("details", "Invoice", new { id = item.Invoice_ID })" data-target="#responsive">Details</a>
+                            </li>
+                            <li>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Invoice_ID })
+                               
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                @Html.ActionLink("Make a payment", "Create","Payment", new { Invoice_ID = item.Invoice_ID },null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("View payment history", "PaymentHistory", "Payment", new { Invoice_ID = item.Invoice_ID }, null)
+                            </li>
+                            <li class="divider"></li>
+                            
+                            <li>
+                               @Html.ActionLink("View/Print Invoice", "PrintInvoice", new { id = item.Invoice_ID })
+                            </li>
+
+                        </ul>
+                    </div>
+                </td>
+
+            </tr>
+        }
+
+</table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+@*
+    ////////////////////////////////
+    @* popup integration*@
+@*   ////////////////////////////////*@
+
+
+<div id="responsive" class="modal container fade " data-backdrop="static" data-keyboard="false" tabindex="-1" style="display: none;">
+
+    <div class="modal-body">
+        <i class="fa fa-spinner fa-spin fa-4x"></i> Loading data, please wait
+    </div>
+
+</div>
+
+
+@section scripts {
+
+
+    @*To show a notification message*@
+    <script>
+
+        if ("@ViewBag.Notificationmessage" != "") {
+            var PurrNotice = ' <div class="alertNotification alert-success alert-centered"> <i class="fa fa-info-circle fa-2x"></i> ' + '@Html.Raw((string)ViewBag.Notificationmessage)' + '</div>';
+            $(PurrNotice).purr();
+        }
+
+    </script>
+}

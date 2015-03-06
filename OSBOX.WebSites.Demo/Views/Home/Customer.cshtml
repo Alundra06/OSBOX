@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Customer";
+}
+
+@*<h2>Customer Portal</h2>*@
+<div class="bgjumbotron"></div>
+<div class="jumbotron">
+
+
+    <h1>Customer portal</h1>
+    @*<h4><span class="label label-default">This portal allows us to work together efficiently by securely exchanging working documentsand accessing all the system functionalities</span></h4>*@
+
+</div>
+
+
+
+
+
+
+<div class="col-xs-12"><h1 class="text-center" >List of available features</h1></div>
+<hr>
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-1 text-center well">
+        <h2><a href="@Url.Action("Index", "Task")">Tasks</a></h2>
+        <h1><span class="glyphicon glyphicon-tasks"></span></h1>
+        <p class="text-center">Check the status of your associated tasks.</p>
+    </div>
+
+    <div class="col-sm-3 text-center">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 well">
+                <h2><a href="@Url.Action("Index", "Calendar")">Calendar</a></h2>
+                <h1><span class="glyphicon glyphicon-calendar"></span></h1>
+                <p class="text-center">View the calendar of associated tasks</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3 text-center well">
+        <h2><a href="@Url.Action("Index", "Folder")">Files</a></h2>
+        <h1><span class="glyphicon glyphicon-briefcase"></span></h1>
+        <p class="text-center">Manage your documents, by downloading/uploading files</p>
+    </div>
+
+    
+
+</div>
+<div class="row">
+     <div class="col-sm-3 col-sm-offset-1 text-center well">
+        <h2><a href="@Url.Action("CustomerInvoiceList", "Invoice", new { CustomerID = ViewBag.CustomerID })">Invoice</a></h2>
+        <h1><span class="glyphicon glyphicon-file"></span></h1>
+        <p class="text-center">View your Invoice</p>
+    </div>
+
+</div>
+

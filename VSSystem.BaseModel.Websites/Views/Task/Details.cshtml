@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+
+@model AKCPA.Data.Models.TaskModel
+
+@{
+    ViewBag.Title = "Details";
+     //var tempFiles = TempData["FeaturedProduct"] as AKCPA.S_chedule.Models.FileModel; 
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaskModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Customer")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.First_Name) - @Html.DisplayFor(model => model.Customer.Last_Name) .
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Assigned to")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.FirstName) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+
+        <dd> 
+            @Html.DisplayFor(model => model.DueDate) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Complete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Complete) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignementDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignementDate) .
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate) .
+        </dd>
+
+        <dd>
+            @Html.Display("Attached files")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Files.FirstOrDefault().Name) .
+        </dt>
+
+        <dd>
+          
+        </dd>
+       
+
+    </dl>
+</div>
+<br></br>
+<br></br>
+<p>
+    @if (!Roles.IsUserInRole("Customer"))
+    {
+         @Html.ActionLink("Edit", "Edit", new { id = Model.TasksID })
+    }
+    
+    |
+    @Html.ActionLink("Back to List", "Index")
+</p>

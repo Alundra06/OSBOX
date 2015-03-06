@@ -1,0 +1,204 @@
+﻿@model OSBOX.Data.Models.InvoiceModel
+
+@{
+    ViewBag.Title = "Create a new invoice";
+    SelectList CustomersList = ViewBag.CustomersList;
+    SelectList ServiceTypeList = ViewBag.ServiceTypeList;
+}
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+  
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Number, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.TextBoxFor(model => model.Invoice_Number, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Invoice_Number)
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <span class="field-validation-error">
+                            @ViewData.ModelState["ExistingInvoice_Number"].Errors[0].ErrorMessage
+                        </span>
+                    }
+   
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Invoice_Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.JQueryUI().DatepickerFor(model => model.Invoice_Date, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Date)
+            </div>
+        </div>
+        
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice_Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               
+                @Html.TextBoxFor(model => model.Invoice_Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice_Amount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Due_Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Due_Amount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Due_Amount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DueDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.JQueryUI().DatepickerFor(model => model.DueDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DueDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paid_Status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Paid_Status, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Paid_Status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment_Term, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Payment_Term, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Payment_Term)
+            </div>
+        </div>
+      
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceType, "Service Type", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               
+               
+            
+
+                    @Html.DropDownList("ServiceTypeID", ServiceTypeList, new { @class = "form-control" })
+              
+                <a class="btn-info" href="/CRMOptions/ServiceTypeIndex" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Manage service types">
+                    <i class="fa fa-plus-circle"></i>
+
+                </a>
+               
+
+                </div>
+
+        </div>
+        
+        <div class="form-group" >
+            @Html.LabelFor(model => model.CustomerId, "Business ID Code", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CustomerId", CustomersList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           @Html.LabelFor(model => model.Note, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Note, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Note)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+ 
+</div>
+
+@section Scripts {
+
+   <script>
+    //show the laoding animation
+    $("form").submit(LoadingModal);
+</script>
+
+
+     <script>
+        //script to change the name of the invoice number
+
+  //      $(document).ready(
+  //function() {
+  //    $('select[name=CustomerId]').change(
+  //    function(){
+  //      var newText = $('option:selected',this).text() ;
+  //      $('#Invoice_Number').text(newText + 'Total price: ');
+  //      $('#Invoice_Number').val($(this).val());
+
+  //    }
+  //    );
+  //}
+
+
+
+
+
+
+
+
+
+
+  //);
+
+
+
+         
+         $(function () {
+             var fullDate = new Date();
+             var twoDigitMonth = ((fullDate.getMonth().toString().length) == 1) ? '0' + (fullDate.getMonth() + 1) : (fullDate.getMonth() + 1);
+             var twoDigitDate = ((fullDate.getDate().toString().length) == 1) ? '0' + (fullDate.getDate()) : (fullDate.getDate());
+             var currentDate = twoDigitDate + "-" + twoDigitMonth + "-" + fullDate.getFullYear();
+            $('#CustomerId').change(function () {
+                $('#Invoice_Number').val($(this).find("option:selected").text() +' - ' + currentDate  );
+            }).change(); // Trigger the event
+        });
+
+
+
+
+
+    </script>
+}

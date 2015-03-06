@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "DataGrid";
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+<link rel="STYLESHEET" type="text/css" href="../Content/CustomCSS/codebase/dhtmlxgrid.css">
+<script src="../Content/CustomCSS/codebase/dhtmlxcommon.js"></script>
+<script src="../Content/CustomCSS/codebase/dhtmlxgrid.js"></script>
+<script src="../Content/CustomCSS/codebase/dhtmlxgridcell.js"></script>
+<h2>DataGrid</h2>
+<div id="gridbox" style="width:300px;height:400px;"></div>  
+<script>
+
+    mygrid = new dhtmlXGridObject('gridbox');
+    mygrid.setImagePath("./codebase/imgs/");
+    mygrid.setHeader("Sales,Book title,Author,Price");
+    mygrid.setInitWidths("100,250,150,100");
+    mygrid.setColAlign("right,left,left,left");
+    mygrid.setColTypes("ro,ed,ed,ed");
+    mygrid.setColSorting("int,str,str,int");
+    mygrid.init();
+    data = {
+        rows: [
+            { id: 1, data: ["A Time to Kill", "John Grisham", "100"] },
+            { id: 2, data: ["Blood and Smoke", "Stephen King", "1000"] },
+            { id: 3, data: ["The Rainmaker", "John Grisham", "-200"] }
+        ]
+    };
+    mygrid.parse(data, "json"); //takes the name and format of the data source
+
+
+
+</script>

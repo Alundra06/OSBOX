@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "DeleteError";
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+
+<div><h2><span class="label label-danger">Delete Warning</span></h2></div>
+
+<hr />
+<div >The account for:  <span class="label label-info "> <b> @ViewBag.CustomerFullName </b></span> cannot be deleted because it has <span class="badge warning">@ViewBag.numberOfActiveTasks</span> <b>active tasks</b>. and/or <span class="badge warning">@ViewBag.numberOfFiles</span> associated files</div>
+<hr />
+<div>@Html.ActionLink("Back to List", "Index")</div>
+                
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<OSBOX.Data.Models.PaymentModel>
+
+@{
+    ViewBag.Title = "Payment history";
+}
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+<h2> Total number of payments = @ViewBag.TotalNumberofPayments || Total amount of payments =$@ViewBag.TotalAmountofPayments</h2>
+
+<!--
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+   -->
+
+
+<table class="table table-bordered table-responsive  table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice.Invoice_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.receivedBy)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Payment_Type.Payment_Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice.Invoice_Number)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.receivedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payment_Type.Payment_Name)
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.Payment_ID }) |
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.Payment_ID }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Payment_ID })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Invoices list", "Index", "Invoice")
+</div>
+
+
+@* ----------------------- Extra Scripts ------------------------ *@
+@section scripts {
+
+
+    @*To show a notification message*@
+    <script>
+
+        if ("@ViewBag.Notificationmessage" != "") {
+            var PurrNotice = ' <div class="alertNotification alert-success alert-centered"> <i class="fa fa-info-circle fa-2x"></i> ' + '@Html.Raw((string)ViewBag.Notificationmessage)' + '</div>';
+            $(PurrNotice).purr();
+        }
+    </script>
+}

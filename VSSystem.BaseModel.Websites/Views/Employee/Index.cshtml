@@ -1,0 +1,76 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_ScheduleSystemLayoutPage.cshtml";
+}
+
+@model IEnumerable<AKCPA.Data.Models.EmployeeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/CustomCSS")
+<h2>Employees list</h2>
+
+<hr />
+    <div class="input-group">
+
+        <span class="input-group-btn">
+            <span class="btn btn-default">@Html.ActionLink("Create New", "employeeregister", "Account")</span>
+        </span>
+    </div><!-- /input-group -->
+    
+<hr />
+<table class="table table-bordered table-responsive  table-hover"  >
+    <tr >
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+
+        <th>
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+           @Html.ActionLink("Hire Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hire_Date)
+        </td>
+       @if(item.Employee_ID != 7)
+       {
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Employee_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Employee_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Employee_ID }) |
+            @Html.ActionLink("Reset Password", "ResetPassword", new { id = item.Employee_ID })
+        </td>
+       }
+    </tr>
+}
+
+</table>
+
+
+
+

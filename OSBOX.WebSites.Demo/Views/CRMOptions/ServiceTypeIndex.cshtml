@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OSBOX.Data.Models.ServiceTypeModel>
+
+@{
+    ViewBag.Title = "ServiceTypeIndex";
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+<h2>Invoice Service Types</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateServiceType")
+</p>
+<table class="table table-bordered table-responsive  table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceTypeName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceTypeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteServiceType", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+</table>

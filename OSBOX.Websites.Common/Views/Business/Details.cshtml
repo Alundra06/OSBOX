@@ -1,0 +1,142 @@
+﻿@model OSBOX.Data.Models.BusinessModel
+
+@{
+    ViewBag.Title = "Details";
+}
+@{
+    Layout = null;
+}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Details</h4>
+</div>
+
+
+
+<div class="modal-body">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            ID Code
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.ID_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.First_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Last_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Phone_Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Phone_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Cell_Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Cell_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Fax)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FIN) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CR)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CR) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUTA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SUTA) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Entity) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Filing)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filing) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BFile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Info)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Info)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Div)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Div) 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EFTPS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EFTPS) 
+        </dd>
+
+
+    </dl>
+</div>
+<div class="modal-footer"> <button type="button" data-dismiss="modal" class="btn btn-warning">Close</button> </div>

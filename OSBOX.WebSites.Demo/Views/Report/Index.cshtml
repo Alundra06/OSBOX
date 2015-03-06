@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+<h2>Reports</h2>
+
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge"><span class="glyphicon glyphicon-star"></span>
+        @ViewBag.TNTasks</span>
+        Total number of tasks
+    </li>
+</ul>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge"><span class="glyphicon glyphicon-star"></span>
+        @ViewBag.TNFTasks</span>
+        Total number of finished tasks
+    </li>
+</ul>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge"><span class="glyphicon glyphicon-star"></span>
+        @ViewBag.TNUTasks</span>
+        Total number of unfinished tasks
+    </li>
+</ul>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge"><span class="glyphicon glyphicon-star"></span>
+        @ViewBag.TNFTTasks</span>
+        Total number of tasks finished on time
+    </li>
+</ul>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge"><span class="glyphicon glyphicon-star"></span>
+        @ViewBag.EmpActiveTasks </span>
+        Employee with most active tasks
+    </li>
+</ul>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge"><span class="glyphicon glyphicon-star"></span>
+        @ViewBag.EmpFinishedTasks
+</span>
+        Employee with most finished tasks
+    </li>
+</ul>
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge">
+        @ViewBag.EmpFinishedTasksontime</span>
+        Employee with most finished tasks on time
+    </li>
+</ul>

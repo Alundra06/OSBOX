@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "DeleteError";
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+
+
+    <h2><span class="label label-danger">Delete Warning</span></h2>
+
+
+<div>The account for:   <b> @ViewBag.FullName </b> cannot be deleted because it has <span class="badge warning">@ViewBag.numberOfActiveTasks</span> <b>active tasks</b>. and/or <span class="badge warning">@ViewBag.numberOfFiles</span> associated files</div>
+<hr />
+<div>@Html.ActionLink("Back to List", "Index")</div>
+
+                
+

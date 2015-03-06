@@ -1,0 +1,127 @@
+﻿@model IEnumerable<AKCPA.Data.Models.Business>
+
+@{
+    ViewBag.Title = "Business list";
+}
+@{
+    Layout = "~/Views/Shared/_CRMSystemLayoutPage.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-responsive  table-hover">
+    <tr>
+        <th>
+            Business
+        </th>
+        <th>
+            ID Code
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FIN_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CR_)
+        </th>
+        <!--
+        <th>
+            @Html.DisplayNameFor(model => model.SUTA_)
+        </th>
+        -->
+        <th>
+            @Html.DisplayNameFor(model => model.Entity)
+        </th>
+        <!--
+        <th>
+            @Html.DisplayNameFor(model => model.Filing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.B_File)
+        </th>
+        -->
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+         <!--
+        <th>
+            @Html.DisplayNameFor(model => model.Info)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Div)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EFTPS)
+        </th>
+        -->
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Last_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Customer_Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIN_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CR_)
+            </td>
+            <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.SUTA_)
+            </td>
+            -->
+            <td>
+                @Html.DisplayFor(modelItem => item.Entity)
+            </td>
+            <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.Filing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.B_File)
+            </td>
+            -->
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Div)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EFTPS)
+            </td>
+            -->
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Last_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BusinessID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BusinessID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BusinessID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F0C91C65-B0BA-464A-8180-A3C4FE46312C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OSBOX.Websites.Common</RootNamespace>
+    <AssemblyName>OSBOX.Websites.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\Bootstrap.css" />
+    <Content Include="Content\bootstrap.min..css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min_old2.css" />
+    <Content Include="Content\bootstrap3.css" />
+    <Content Include="Content\bootstrap3.min.css" />
+    <Content Include="Content\bootstrapOld022415.css" />
+    <Content Include="Content\bootstrapOld022415.min.css" />
+    <Content Include="Content\bootstrapOld11-25-14.css" />
+    <Content Include="Content\CustomCSS\codebase\dhtmlxgrid.css" />
+    <Content Include="Content\CustomCSS\codebase\dhtmlxgrid.js" />
+    <Content Include="Content\CustomCSS\codebase\dhtmlxgrid_deprecated.js" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcalendar_skyblue\dhxcalendar_arrow_left.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcalendar_skyblue\dhxcalendar_arrow_right.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcalendar_skyblue\dhxcalendar_clock.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcalendar_skyblue\dhxcalendar_mark.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcalendar_skyblue\dhxcalendar_selector_bottom.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcalendar_skyblue\dhxcalendar_selector_top.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcombo_skyblue\dhxcombo_arrow_down.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcombo_skyblue\dhxcombo_arrow_down_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxcombo_skyblue\dhxcombo_chbx.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_left.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_left_abs.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_left_abs_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_left_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_right.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_right_abs.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_right_abs_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\ar_right_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\blank.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\combo_select_dhx_skyblue.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\dyn_.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\dyn_down.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\dyn_up.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\imageloaderror.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\item_chk0.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\item_chk0_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\item_chk1.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\item_chk1_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\minus.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\paging_page.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\paging_pages.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\paging_rows.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\plus.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\radio_chk0.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\radio_chk0_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\radio_chk1.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\radio_chk1_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\sort_asc.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\sort_desc.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\blank.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\folder.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\leaf.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\line.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\line1.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\line2.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\line3.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\line4.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\minus.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\minus1.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\minus2.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\minus3.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\minus4.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\minus5.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\plus.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\plus1.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\plus2.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\plus3.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\plus4.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxgrid_skyblue\tree\plus5.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_arrow_down.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_arrow_down_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_arrow_up.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_arrow_up_dis.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_chrd.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_loader.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxmenu_skyblue\dhxmenu_subar.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxtoolbar_skyblue\dhxtoolbar_arrow.gif" />
+    <Content Include="Content\CustomCSS\codebase\imgs\dhxtoolbar_skyblue\dhxtoolbar_arrow_dis.gif" />
+    <Content Include="Content\CustomCSS\Invoice.css" />
+    <Content Include="Content\CustomCSS\table_design.css" />
+    <Content Include="Content\EmployeeManual\1.png" />
+    <Content Include="Content\EmployeeManual\10.jpg" />
+    <Content Include="Content\EmployeeManual\10.PNG" />
+    <Content Include="Content\EmployeeManual\11.PNG" />
+    <Content Include="Content\EmployeeManual\2.jpg" />
+    <Content Include="Content\EmployeeManual\2.PNG" />
+    <Content Include="Content\EmployeeManual\2014 Main business list.png" />
+    <Content Include="Content\EmployeeManual\3.png" />
+    <Content Include="Content\EmployeeManual\4.png" />
+    <Content Include="Content\EmployeeManual\5.png" />
+    <Content Include="Content\EmployeeManual\6.jpg" />
+    <Content Include="Content\EmployeeManual\6.PNG" />
+    <Content Include="Content\EmployeeManual\7.jpg" />
+    <Content Include="Content\EmployeeManual\7.PNG" />
+    <Content Include="Content\EmployeeManual\8.jpg" />
+    <Content Include="Content\EmployeeManual\8.PNG" />
+    <Content Include="Content\EmployeeManual\9.jpg" />
+    <Content Include="Content\EmployeeManual\9.PNG" />
+    <Content Include="Content\EmployeeManual\941 in quickbook.PNG" />
+    <Content Include="Content\EmployeeManual\941ProcessForms.PNG" />
+    <Content Include="Content\EmployeeManual\941ProcessForms3.PNG" />
+    <Content Include="Content\EmployeeManual\941ProcessForms4.PNG" />
+    <Content Include="Content\EmployeeManual\ada-access.gif" />
+    <Content Include="Content\EmployeeManual\ada-activity.gif" />
+    <Content Include="Content\EmployeeManual\ada-annotation.gif" />
+    <Content Include="Content\EmployeeManual\ada-equation.gif" />
+    <Content Include="Content\EmployeeManual\ada-media.gif" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media10.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media11.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media12.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media14.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media15.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media19.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media2.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media20.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media22.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media26.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media29.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media3.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media30.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media31.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media32.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media33.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media34.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media35.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media4.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media40.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media41.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media42.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media45.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media48.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media49.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media50.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media51.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media52.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media53.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media55.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media56.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media57.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media58.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media59.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media6.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media60.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media61.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media62.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media63.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media64.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media65.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media69.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media7.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media71.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media72.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media73.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media74.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media76.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media77.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media78.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media8.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media80.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media81.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media83.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media84.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media86.html" />
+    <Content Include="Content\EmployeeManual\ada_files\ada_media9.html" />
+    <Content Include="Content\EmployeeManual\ApplyWeb.PNG" />
+    <Content Include="Content\EmployeeManual\B-fileMDDCVA.png" />
+    <Content Include="Content\EmployeeManual\Billing.png" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 11.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 3.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 4.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 5.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 6.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 7.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 8.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration Page 9.PNG" />
+    <Content Include="Content\EmployeeManual\Business Registration.PNG" />
+    <Content Include="Content\EmployeeManual\Check -7 .png" />
+    <Content Include="Content\EmployeeManual\Check-1.png" />
+    <Content Include="Content\EmployeeManual\Check-10.png" />
+    <Content Include="Content\EmployeeManual\Check-11.png" />
+    <Content Include="Content\EmployeeManual\Check-12.png" />
+    <Content Include="Content\EmployeeManual\Check-2.png" />
+    <Content Include="Content\EmployeeManual\Check-5.png" />
+    <Content Include="Content\EmployeeManual\Check-6.png" />
+    <Content Include="Content\EmployeeManual\Check-8.png" />
+    <Content Include="Content\EmployeeManual\Check-9.png" />
+    <Content Include="Content\EmployeeManual\Check5-1.png" />
+    <Content Include="Content\EmployeeManual\contentwrap_custom.png" />
+    <Content Include="Content\EmployeeManual\csshover.htc" />
+    <Content Include="Content\EmployeeManual\dropmenu_custom.png" />
+    <Content Include="Content\EmployeeManual\get_flash_player.gif" />
+    <Content Include="Content\EmployeeManual\index.html" />
+    <Content Include="Content\EmployeeManual\mailWord-941.PNG" />
+    <Content Include="Content\EmployeeManual\Manual_0328.css" />
+    <Content Include="Content\EmployeeManual\Manual_0328.html" />
+    <Content Include="Content\EmployeeManual\Manual_032810.html" />
+    <Content Include="Content\EmployeeManual\Manual_032811.html" />
+    <Content Include="Content\EmployeeManual\Manual_032812.html" />
+    <Content Include="Content\EmployeeManual\Manual_032813.html" />
+    <Content Include="Content\EmployeeManual\Manual_032814.html" />
+    <Content Include="Content\EmployeeManual\Manual_032815.html" />
+    <Content Include="Content\EmployeeManual\Manual_032816.html" />
+    <Content Include="Content\EmployeeManual\Manual_032817.html" />
+    <Content Include="Content\EmployeeManual\Manual_032818.html" />
+    <Content Include="Content\EmployeeManual\Manual_03282.html" />
+    <Content Include="Content\EmployeeManual\Manual_03283.html" />
+    <Content Include="Content\EmployeeManual\Manual_03284.html" />
+    <Content Include="Content\EmployeeManual\Manual_03285.html" />
+    <Content Include="Content\EmployeeManual\Manual_03286.html" />
+    <Content Include="Content\EmployeeManual\Manual_03287.html" />
+    <Content Include="Content\EmployeeManual\Manual_03288.html" />
+    <Content Include="Content\EmployeeManual\Manual_03289.html" />
+    <Content Include="Content\EmployeeManual\Manual_0328_dummy.html" />
+    <Content Include="Content\EmployeeManual\Manual_0328_md.xml" />
+    <Content Include="Content\EmployeeManual\Manual_0328_orm.txt" />
+    <Content Include="Content\EmployeeManual\Manual_0328_print.css" />
+    <Content Include="Content\EmployeeManual\Manual_0328_print.html" />
+    <Content Include="Content\EmployeeManual\Manual_0328_toc.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\css\mobile-style.css" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\downarrow.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\downarrow_black.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\leftnav.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav-hover.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_background.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_bar_background.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_contract_button.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_expand_button.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_hide_button.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_left_background.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_left_button.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_right_button.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\nav_show_button.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\rightnav.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\TOCarrow.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\uparrow.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\uparrow_black.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\images\x.png" />
+    <Content Include="Content\EmployeeManual\mobile_pages\index.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\js\jquery.json-2.2.js" />
+    <Content Include="Content\EmployeeManual\mobile_pages\js\jquery.store.js" />
+    <Content Include="Content\EmployeeManual\mobile_pages\js\mobile.js" />
+    <Content Include="Content\EmployeeManual\mobile_pages\js\store.js" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_0328.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032810.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032811.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032812.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032813.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032814.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032815.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032816.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032817.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_032818.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03282.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03283.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03284.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03285.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03286.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03287.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03288.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_03289.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\Manual_0328_dummy.html" />
+    <Content Include="Content\EmployeeManual\mobile_pages\softchalk_manifest.xml" />
+    <Content Include="Content\EmployeeManual\Orgnization chart.PNG" />
+    <Content Include="Content\EmployeeManual\Process about auto payment.PNG" />
+    <Content Include="Content\EmployeeManual\Process about checks.PNG" />
+    <Content Include="Content\EmployeeManual\Process about invoice.PNG" />
+    <Content Include="Content\EmployeeManual\salesTaxExcel.JPG" />
+    <Content Include="Content\EmployeeManual\sclb_extras\flashobject.js" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_above_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_above_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_below_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_below_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\flower_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_above_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_above_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_below_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_below_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\oval_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\overlibmws.js" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\overlibmws_bubble.js" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\overlibmws_shadow.js" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\postit_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\postit_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\postit_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\postit_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\pushpin_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\pushpin_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\pushpin_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\pushpin_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_above_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_above_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_below_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_below_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\quotation_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_above_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_above_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_below_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_below_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\speech_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_above_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_above_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_above_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_above_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_below_left.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_below_left_shadow.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_below_right.png" />
+    <Content Include="Content\EmployeeManual\sclb_extras\overlibmws\thought_below_right_shadow.png" />
+    <Content Include="Content\EmployeeManual\softchalk.xml" />
+    <Content Include="Content\EmployeeManual\softchalk_manifest.xml" />
+    <Content Include="Content\EmployeeManual\spacer.gif" />
+    <Content Include="Content\EmployeeManual\submenu_custom.png" />
+    <Content Include="Content\EmployeeManual\total number for 941.PNG" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\AKCPA home.jpg" />
+    <Content Include="Content\images\aklogo1.gif" />
+    <Content Include="Content\images\bg1.jpg" />
+    <Content Include="Content\images\bg_header.jpg" />
+    <Content Include="Content\images\cross-icon.png" />
+    <Content Include="Content\images\delete-file-icon.png" />
+    <Content Include="Content\images\dimension.png" />
+    <Content Include="Content\images\Folder-icon-local.png" />
+    <Content Include="Content\images\FolderIcon.png" />
+    <Content Include="Content\images\Fotolia_6975114_XS.jpg" />
+    <Content Include="Content\images\invoice-icon.png" />
+    <Content Include="Content\images\LMS.png" />
+    <Content Include="Content\images\Loading.gif" />
+    <Content Include="Content\images\Loading1.GIF" />
+    <Content Include="Content\images\log.png" />
+    <Content Include="Content\images\Money-icon.png" />
+    <Content Include="Content\images\Mountable-icon.png" />
+    <Content Include="Content\images\Mr._Kim.JPG" />
+    <Content Include="Content\images\newspaper-jobs-icon.png" />
+    <Content Include="Content\images\options-icon.png" />
+    <Content Include="Content\images\report.png" />
+    <Content Include="Content\images\ScheduleCalendar.png" />
+    <Content Include="Content\images\Tasks.png" />
+    <Content Include="Content\images\User-Files-icon.png" />
+    <Content Include="Content\images\Users.png" />
+    <Content Include="Content\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Content\jquery.timepicker.css" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap-responsive.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap-responsive.min.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap.min.css" />
+    <Content Include="Content\metro-ui\fonts\iconFont.dev.svg" />
+    <Content Include="Content\metro-ui\fonts\iconFont.svg" />
+    <Content Include="Content\Mystyles.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\ScheduleBootsrtap\css\bootstrap.css" />
+    <Content Include="Content\ScheduleBootsrtap\css\bootstrap.min.css" />
+    <Content Include="Content\ScheduleBootsrtap\css\heroic-features.css" />
+    <Content Include="Content\ScheduleBootsrtap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\ScheduleBootsrtap\js\bootstrap.js.htm" />
+    <Content Include="Content\ScheduleBootsrtap\js\bootstrap.min.js.htm" />
+    <Content Include="Content\ScheduleBootsrtap\js\jquery-1.10.2.js.htm" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\SiteOld022415.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\DropBox\SharpDropBox-Old.Token" />
+    <Content Include="Content\DropBox\SharpDropBoxAKCPA.Token" />
+    <Content Include="Content\DropBox\SharpDropBoxViaSoft.Token" />
+    <Content Include="Content\EmployeeManual\Thumbs.db" />
+    <Content Include="Content\EmployeeManual\usd_ak.zip" />
+    <Content Include="Content\metro-ui\fonts\iconFont.eot" />
+    <Content Include="Content\metro-ui\fonts\iconFont.json" />
+    <Content Include="Content\metro-ui\fonts\iconFont.ttf" />
+    <Content Include="Content\metro-ui\fonts\iconFont.woff" />
+    <Content Include="Content\ScheduleBootsrtap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\ScheduleBootsrtap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\ScheduleBootsrtap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\data.json" />
+    <Content Include="Content\SharpDropBox.Token" />
+    <Content Include="Content\Web2.config" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Business\Create.cshtml" />
+    <Content Include="Views\Business\Delete.cshtml" />
+    <Content Include="Views\Business\Details.cshtml" />
+    <Content Include="Views\Business\Edit.cshtml" />
+    <Content Include="Views\Business\Index.cshtml" />
+    <Content Include="Views\Business\Search.cshtml" />
+    <Content Include="Views\Address\Create.cshtml" />
+    <Content Include="Views\Address\Delete.cshtml" />
+    <Content Include="Views\Address\Edit.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>25016</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:25016/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,27 @@
+﻿@if (!User.IsInRole("Customer"))
+{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <style>
+        body
+        {
+            background-color:#eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="pager">
+
+        <span class="label label-success"> Number of tasks @ViewBag.tasks</span>
+
+    </div>
+    <div style="height:700px;width:900px;margin:0 auto">
+        @Html.Raw(Model.Render())
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿@*@{
+    Layout = null;
+}*@
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+@model OSBOX.Data.Models.CustomerModel
+
+@{
+    ViewBag.Title = "Edit customer's account";
+}
+
+@*<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Edit</h4>
+</div>*@
+<h4 >@ViewBag.Title</h4>
+
+
+    @using (Html.BeginForm())
+    {
+
+        @*<div class="modal-body">*@
+
+
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true)
+            <div class="form-horizontal">
+
+
+                @Html.HiddenFor(model => model.CustomerId)
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.ID_Code)
+                <fieldset>
+
+
+
+
+
+                    <legend>
+                      
+                            @Html.DisplayName("ID Code") : @Html.DisplayFor(model => model.ID_Code)
+
+                    </legend>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Business_Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Business_Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Business_Name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LegalName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.LegalName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LegalName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Phone_Number, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Phone_Number, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Phone_Number)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.First_Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.First_Name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Middle_name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Middle_name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Middle_name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Last_Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Last_Name)
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name_Prefix, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+
+                            @Html.TextBoxFor(m => m.Name_Prefix, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name_Prefix)
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cell_Phone, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Cell_Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Cell_Phone)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fax, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Fax, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Fax)
+                        </div>
+                    </div>
+
+
+
+
+                </fieldset>
+            </div>
+
+
+        @*</div>*@
+
+@*<div class="modal-footer">
+
+            <input type="submit" value="Save" class="btn btn-success" /> |
+    <button type="button" data-dismiss="modal" class="btn btn-warning">Close</button>
+</div>*@
+
+
+    <div>
+        <input type="submit" value="Save" class="btn btn-success" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+
+    } @*//End of the form*@
+
+
+@section Scripts {
+
+    <script>
+        //show the laoding animation
+        $("form").submit(LoadingModal);
+
+    </script>
+}

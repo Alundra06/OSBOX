@@ -1,0 +1,103 @@
+﻿@*@{
+        Layout = null;
+    }*@
+@{
+    Layout = "~/Views/Shared/_SystemIndexLayoutPage.cshtml";
+}
+
+@model OSBOX.Data.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Edit customer's account";
+}
+
+@*<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Edit</h4>
+    </div>*@
+<h4>@ViewBag.Title</h4>
+    
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Employee_ID)
+                @Html.HiddenFor(model => model.UserId)
+
+
+                <div class="form-group">
+                    @Html.Label("User Name", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <h4><span  > @ViewBag.UserName </span></h4>
+                    </div>
+                   
+                </div>
+
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Hire_Date, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+
+                        @Html.JQueryUI().DatepickerFor(model => model.Hire_Date, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Manager_ID, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Manager_ID, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Salary, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Salary, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Salary)
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Save" class="btn btn-success" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+
+        }
+
+
+
+
+@section Scripts {
+
+    <script>
+        //show the laoding animation
+        $("form").submit(LoadingModal);
+
+    </script>
+}
+       
+
+
+   

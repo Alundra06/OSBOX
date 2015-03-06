@@ -1,0 +1,112 @@
+﻿@model OSBOX.Data.Models.InvoiceModel
+
+@{
+	ViewBag.Title = "Details";
+}
+@{
+    Layout = null;
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Details</h4>
+</div>
+
+
+
+<div class="modal-body">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Business_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Business_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.ID_Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.ID_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Due_Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Due_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paid_Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Paid_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Term)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Term)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Customer.CustomerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerId)
+        </dd>*@
+
+    </dl>
+</div>
+<div class="modal-footer"> <button type="button" data-dismiss="modal" class="btn btn-warning">Close</button> </div>

@@ -1,0 +1,89 @@
+﻿.alertNotification {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align:right;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+
+.alert-centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 10%;
+
+  z-index: 1040;
+ 
+  outline: 0;
+   background: rgba( 255, 255, 255, 1 );
+  
+}
+
+
+.green-container {
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	width: 100%;
+	min-height: 250px;
+	clear: both;
+	background: url("https://1-ps.googleusercontent.com/sxk/C6_w5UTNXSChawD5fgVs6KGJ9V/s.beansprock.appspot.com/www.beansprock.com/img/xtop-bar-background.png.pagespeed.ic.Wem6_Huy4AAv2n0UWS_g.png") repeat scroll left top transparent;
+	background-color:aqua;
+}
+
+.jumbotronTest {
+ margin: 0px;
+	padding: 0px;
+	display: block;
+	width: 100%;
+	min-height: 250px;
+	clear: both;
+	background: url("https://1-ps.googleusercontent.com/sxk/C6_w5UTNXSChawD5fgVs6KGJ9V/s.beansprock.appspot.com/www.beansprock.com/img/xtop-bar-background.png.pagespeed.ic.Wem6_Huy4AAv2n0UWS_g.png") repeat scroll left top transparent;
+  
+
+}
+/*.jumbotron {
+text-shadow: black 0.3em 0.3em 0.3em;
+text-emphasis-color:ActiveCaption;
+background-repeat: no-repeat;
+/*background-image:url('/Content/images/OSBOX home.jpg');*/
+background-color:orange;
+background-size:cover;
+/*position:fixed;*/
+right:0px;
+left:0px;
+
+
+
+
+padding: 30px;
+margin-bottom: 30px;
+}*/
+
+.mycontent-left {
+  border-right: 1px dashed #333;
+}
+
+
+.nicecolor {
+	  color:black;
+	  
+	 }
+
+.nicecolor:hover {
+	  color:darkorange;
+	 }
