@@ -3,7 +3,6 @@ using OSBOX.Data.DAL;
 using OSBOX.Data.Models;
 using AppLimit.CloudComputing.SharpBox;
 using Microsoft.AspNet.Identity;
-using Ninject;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,38 +16,40 @@ namespace OSBOX.Common.Controllers
     [AuthorizeAuthenticatedOnly] 
     public class FolderController : Controller, IFolderController
     {
+        //IoC
+        private readonly IFileContext FileDB;
+        private readonly IFileController FileController;
+        private readonly IFolderContext FolderDB;
+        private readonly ICustomerContext CustomerDB;
 
-
+        
+        //private ICustomerController Customercontroller;
        
         
-        public FolderController(IFileContext FileDBContext, IFolderContext FolderDBContext, IFileController FileControllerEx,ICustomerContext CustomerContextDB)
+        public FolderController(IFileContext FileDBContext, IFolderContext FolderDBContext, IFileController FileControllerEx,ICustomerContext CustomerDBContext)
         {
             FileDB = FileDBContext;
             FolderDB = FolderDBContext;
             FileController = FileControllerEx;
-            
+            CustomerDB = CustomerDBContext;
             
         }
 
-        //Property injection
-        //http://ninject.codeplex.com/wikipage?title=Injection%20Patterns
-        [Inject]
-        public ICustomerController CustomercontrollerEX
-        {
-            get { return Customercontroller; }
-            set { Customercontroller = value; }
+        ////Property injection
+        ////http://ninject.codeplex.com/wikipage?title=Injection%20Patterns
+        //[Inject]
+        //public ICustomerController CustomercontrollerEX
+        //{
+        //    get { return Customercontroller; }
+        //    set { Customercontroller = value; }
      
-        }
+        //}
         
-        private IFolderContext FolderDB;
-        private ICustomerContext CustomerDB;
+     
 
-
+      //For the DropBox integration 
         private readonly static string DropboxToken = System.Web.Configuration.WebConfigurationManager.AppSettings["DropBoxToken"].ToString();
-
         private readonly string Token_Path = Path.Combine(HttpRuntime.AppDomainAppPath, DropboxToken);
-        //Token for Viasoft
-       // string Token_Path = Path.Combine(HttpRuntime.AppDomainAppPath, "Content\\DropBox\\SharpDropBoxViaSoft.Token");
 
         
         
@@ -59,12 +60,28 @@ namespace OSBOX.Common.Controllers
         
         
         private IQueryable<FolderModel> FolderStructure = Enumerable.Empty<FolderModel>().AsQueryable();
+
+
+
+
         
-        private IFileContext FileDB;
-        private IFileController FileController;
-        //private ICustomerContext CustomerDB;
-        private ICustomerController Customercontroller;
-      
+        //this method is for renturning the Partial View once the upload of the file is complete  03/10/2015
+        public PartialViewResult UploadFileComplete(string ParentFolder)
+        {
+
+
+        
+
+
+            //Get the customer ID from customer-account name
+            JsonResult js = GetFolderStructure(ParentFolder);
+            ViewBag.folders = js.Data;
+            return PartialView("_Folders_Structure");
+        }
+        
+
+
+
 
         public PartialViewResult Create_Folder_Complete(string Folder_Name, string Parent_Folder)
         {
@@ -79,6 +96,7 @@ namespace OSBOX.Common.Controllers
             if (!isCustomer)
             {
                 //TODO I made a decision to use DropBox and not save to the server 11/08/14
+                
                 //create folder on the server
                 CreateFolderOnServer(Folder_Name, Parent_Folder);
 
@@ -87,10 +105,7 @@ namespace OSBOX.Common.Controllers
             }
                 
             
-           // //Get the customer ID from customer-account name
-           //string CustomerName = FolderDB.GetAllFolders.Where(s=>s.FolderID == Parent_Folder).First().Name;
-           //string CustomerAccount = Customercontroller.GetCustomerIDByAccount(CustomerName).ToString();
-            
+            //Get the customer ID from customer-account name
             JsonResult js = GetFolderStructure(Parent_Folder);
                 ViewBag.folders = js.Data;
                 return PartialView("_Folders_Structure");
@@ -196,7 +211,7 @@ namespace OSBOX.Common.Controllers
         public JsonResult GetFolderStructure(string FolderID)
         {
             if (FolderID == null)
-                FolderID = FolderDB.GetAllFolders.First().FolderID;
+                FolderID = GetAllFoldersInstance.First().FolderID;
             
             //Check if the logged-in user is a customer or not
             
@@ -229,9 +244,20 @@ namespace OSBOX.Common.Controllers
         }
         public string GetIDForSystemFolder(string p)
         {
-            return FolderDB.GetAllFolders.Where(s => s.Name == p && s.Type == "System").First().FolderID;
+            return GetAllFoldersInstance.Where(s => s.Name == p && s.Type == "System").First().FolderID;
 
         }
+
+   
+        public  IQueryable<FolderModel> GetAllFoldersInstance
+        {
+            get
+            {
+                return FolderDB.Folders;
+            }
+        }
+      
+        
         public IQueryable<FileModel> GetFilesFromaFolderList(IQueryable<FolderModel> queryable)
         {
             
@@ -266,7 +292,7 @@ namespace OSBOX.Common.Controllers
              //if (!isCustomer)
              //{
              //    List<FolderModel> myfolders = FolderStructure.ToList();
-             //    myfolders.Add(FolderDB.GetAllFolders.Where(s => s.Type=="System").First());
+             //    myfolders.Add(GetAllFoldersInstance.Where(s => s.Type=="System").First());
              //    FolderStructure = myfolders.AsQueryable();
 
              //}
@@ -281,14 +307,16 @@ namespace OSBOX.Common.Controllers
         {
 
             List<FolderModel> myfolders = FolderStructure.ToList();
-            if(!FirstTime)
-            myfolders.Add(FolderDB.GetAllFolders.Where(s => s.FolderID.ToLower() == FolderID.ToLower()).First());
+            if (!FirstTime)
+                myfolders.Add(GetAllFoldersInstance.ToList().Where(s => s.FolderID.ToLower() == FolderID.ToLower()).FirstOrDefault());
             FirstTime = false;
             FolderStructure = myfolders.AsQueryable();
+           // FolderStructure = GetAllFoldersInstance;
+
            
            
                 
-            foreach (var Folder in FolderDB.GetAllFolders.Where(s => s.ParentFolder == FolderID))
+            foreach (var Folder in GetAllFoldersInstance.ToList().Where(s => s.ParentFolder == FolderID))
                 {
                     GetFoldersStructutreFromFolderIDDownward(Folder.FolderID);
                 }
@@ -300,11 +328,11 @@ namespace OSBOX.Common.Controllers
         {
 
             List<FolderModel> myfolders = FolderStructure.ToList();
-            myfolders.Add(FolderDB.GetAllFolders.Where(s => s.FolderID.ToLower() == FolderID.ToLower()).First());
+            myfolders.Add(GetAllFoldersInstance.ToList().Where(s => s.FolderID.ToLower() == FolderID.ToLower()).First());
             FolderStructure = myfolders.AsQueryable();
-            if(FolderDB.GetAllFolders.Where(s=>s.FolderID==FolderID).First().Type!="Root")
+            if(GetAllFoldersInstance.Where(s=>s.FolderID==FolderID).First().Type!="Root")
             {
-                GetFoldersStructutreFromFolderIDUpward(FolderDB.GetAllFolders.Where(s => s.FolderID == FolderID).First().ParentFolder);  
+                GetFoldersStructutreFromFolderIDUpward(GetAllFoldersInstance.ToList().Where(s => s.FolderID == FolderID).First().ParentFolder);  
             }
             
             
@@ -313,14 +341,14 @@ namespace OSBOX.Common.Controllers
 
         public IQueryable<FileModel> GetFilesFromCustomerName(string CustomerName, bool isCustomer)
         {
-            String FolderID = FolderDB.GetAllFolders.Where(s => s.Name == CustomerName).FirstOrDefault().FolderID;
+            String FolderID = GetAllFoldersInstance.Where(s => s.Name == CustomerName).FirstOrDefault().FolderID;
             if (isCustomer) // Add only the files associated with the customer
             {
                 return from t in FileDB.Files where t.FolderID == FolderID select t;
             }
             else//Add the files under Tasks folder
             {
-                string FolderTaskID = FolderDB.GetAllFolders.Where(s => s.Name == "Tasks").First().FolderID;
+                string FolderTaskID = GetAllFoldersInstance.Where(s => s.Name == "Tasks").First().FolderID;
                 return FileDB.GetAllFiles.Where(t=>t.FolderID == FolderID || t.FolderID == FolderTaskID) ;
             }
         }
@@ -397,38 +425,37 @@ namespace OSBOX.Common.Controllers
         {
 
             string FirstFolderIDToDisplay;
+            
             //TODO need to look at this
             if (TempData["FolderID"] != null)
             {
                 string CurrentFolder = TempData["FolderID"].ToString();
-                if (FolderDB.GetAllFolders.Where(s => s.FolderID == CurrentFolder).First().Type == "Root")
-                    FirstFolderIDToDisplay = FolderDB.GetAllFolders.Where(s => s.Type == "System").First().FolderID;
+                if (GetAllFoldersInstance.Where(s => s.FolderID == CurrentFolder).First().Type == "Root")
+                    FirstFolderIDToDisplay = GetAllFoldersInstance.Where(s => s.Type == "System").First().FolderID;
                 else
                 FirstFolderIDToDisplay = TempData["FolderID"].ToString();
             }
             else
                 //return the ID of a folder system to display only the root and the system folder
-                FirstFolderIDToDisplay = FolderDB.GetAllFolders.Where(s => s.Type == "System").First().FolderID;
+                FirstFolderIDToDisplay = GetAllFoldersInstance.ToList().Where(s => s.Type == "System").First().FolderID;
 
                
             JsonResult js = GetFolderStructure(FirstFolderIDToDisplay);
             ViewBag.folders = js.Data;
-            ViewBag.CustomerNames = CustomercontrollerEX.GetCustomersAccounts();
+           // ViewBag.CustomerNames = CustomercontrollerEX.GetCustomersAccounts();
+
+            ViewBag.CustomerNames = new System.Web.Mvc.SelectList(CustomerDB.GetAllCustomers.OrderBy(s=>s.ID_Code), "CustomerId", "ID_Code");
             return View();
         }
 
-        public PartialViewResult getFolderStructureByCustomerAccount(string CustomerID)
+        public PartialViewResult getFolderStructureByCustomerAccount(int? CustomerID)
         {
             string FolderID;
             if (CustomerID == null)
-                FolderID = FolderDB.GetAllFolders.First().FolderID;
-            //If the user select "Please select a customer" option from the dropdown menu
-            else if (CustomerID == "")
-                FolderID = FolderDB.GetAllFolders.Where(s => s.Type == "System").First().FolderID;
+                FolderID = GetAllFoldersInstance.Where(s => s.Type == "System").First().FolderID;
             else
             {
-                
-                FolderID = GetFoldersIDFromCustomerAccount(CustomercontrollerEX.GetCustomerAccountByID(Convert.ToInt16(CustomerID)));
+                FolderID = GetFoldersIDFromCustomerAccount(CustomerDB.GetAllCustomers.Where(s => s.CustomerId == CustomerID).FirstOrDefault().ID_Code);
             }
             JsonResult js = GetFolderStructure(FolderID);
                 ViewBag.folders = js.Data;
@@ -438,15 +465,15 @@ namespace OSBOX.Common.Controllers
 
         public bool FolderExists(string FolderID)
         {
-            return FolderDB.GetAllFolders.Any(s => s.FolderID == FolderID);
+            return GetAllFoldersInstance.Any(s => s.FolderID == FolderID);
         }
 
         
         public string GetFoldersIDFromCustomerAccount(string p)
         {
-            if (FolderDB.GetAllFolders.Where(s => s.Name == p).Any())
+            if (GetAllFoldersInstance.Where(s => s.Name == p).Any())
             {
-                return FolderDB.GetAllFolders.Where(s => s.Name == p).First().FolderID;
+                return GetAllFoldersInstance.Where(s => s.Name == p).First().FolderID;
             }
             else
            return 
@@ -456,7 +483,7 @@ namespace OSBOX.Common.Controllers
        
         public bool FolderHasSubFolders(string FolderID)
         {
-            return FolderDB.GetAllFolders.Any(s => s.ParentFolder == FolderID);
+            return GetAllFoldersInstance.Any(s => s.ParentFolder == FolderID);
         }
 
         public bool FolderHasFiles(string FolderID)
@@ -466,7 +493,7 @@ namespace OSBOX.Common.Controllers
 
         public bool  DeleteFolderFromDataBase(string FolderID)
         {
-            FolderDB.Folders.Remove(FolderDB.GetAllFolders.Where(s => s.FolderID == FolderID).First());
+            FolderDB.Folders.Remove(GetAllFoldersInstance.Where(s => s.FolderID == FolderID).First());
             FolderDB.Commit();
             return true;
             
@@ -477,7 +504,7 @@ namespace OSBOX.Common.Controllers
 
 
             
-            string FolderPath = FolderDB.GetAllFolders.Where(s=>s.FolderID == Parent_Folder3).First().FullPath;
+            string FolderPath = GetAllFoldersInstance.Where(s=>s.FolderID == Parent_Folder3).First().FullPath;
             CloudStorage dropBoxStorage = new CloudStorage();
             var dropBoxConfig = CloudStorage.GetCloudConfigurationEasy(nSupportedCloudConfigurations.DropBox);
             ICloudStorageAccessToken accessToken = null;
@@ -514,7 +541,7 @@ namespace OSBOX.Common.Controllers
         {
 
 
-            string FolderPath = FolderDB.GetAllFolders.Where(s => s.FolderID == Parent_Folder3).First().FullPath;
+            string FolderPath = GetAllFoldersInstance.Where(s => s.FolderID == Parent_Folder3).First().FullPath;
             //Token for OSBOX
             //string Token_Path = Path.Combine(HttpRuntime.AppDomainAppPath, "Content\\DropBox\\SharpDropBox.Token");
             //Token for Viasoft
@@ -559,7 +586,7 @@ namespace OSBOX.Common.Controllers
         public PartialViewResult DeleteFolderComplete(string Parent_Folder3)
         {
              //Store the fileID we need to send back to the view
-            string ParentFolderID = FolderDB.GetAllFolders.Where(s => s.FolderID == Parent_Folder3).First().ParentFolder;
+            string ParentFolderID = GetAllFoldersInstance.Where(s => s.FolderID == Parent_Folder3).First().ParentFolder;
             if (!FolderExists(Parent_Folder3))
             {
                 ViewBag.Message = "Couldn't find the folder!";
@@ -612,15 +639,16 @@ namespace OSBOX.Common.Controllers
         public bool FolderIsSystemFolder(string FolderID)
         {
 
-            return FolderDB.GetAllFolders.Any(s => s.FolderID == FolderID && (s.Type == "System" || s.Type == "Root"));
+            return GetAllFoldersInstance.Any(s => s.FolderID == FolderID && (s.Type == "System" || s.Type == "Root"));
         }
 
         
         public bool CreateFoldersForAllCustomers()
         {
 
-            string ParentFolderID = FolderDB.GetAllFolders.Where(s => s.Type == "Root").First().FolderID;
-            var Customers = CustomercontrollerEX.GetAllCustomers();
+            string ParentFolderID = GetAllFoldersInstance.Where(s => s.Type == "Root").First().FolderID;
+            //var Customers = CustomercontrollerEX.GetAllCustomers();
+            var Customers = CustomerDB.GetAllCustomers;
             foreach (var f in Customers)
             {
                 Create_Folder_Complete(f.ID_Code, ParentFolderID);
@@ -651,7 +679,7 @@ namespace OSBOX.Common.Controllers
             //string ServerDirectoryPath = Path.Combine(HttpRuntime.AppDomainAppPath, "Uploads/" + Folder_Full_Path);
             CloudStorage dropBoxStorage = new CloudStorage();
 
-            var dropBixConfig = CloudStorage.GetCloudConfigurationEasy(nSupportedCloudConfigurations.DropBox);
+            var dropBoxConfig = CloudStorage.GetCloudConfigurationEasy(nSupportedCloudConfigurations.DropBox);
 
             ICloudStorageAccessToken accessToken = null;
 
@@ -660,7 +688,7 @@ namespace OSBOX.Common.Controllers
                 accessToken = dropBoxStorage.DeserializeSecurityToken(fs);
             }
 
-            var storageToken = dropBoxStorage.Open(dropBixConfig, accessToken);
+            var storageToken = dropBoxStorage.Open(dropBoxConfig, accessToken);
 
             String UserFolderName = "/public" + FolderPath;
             dropBoxStorage.CreateFolder(UserFolderName);

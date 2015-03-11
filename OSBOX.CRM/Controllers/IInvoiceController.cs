@@ -3,7 +3,7 @@ namespace OSBOX.CRM.Controllers
 {
     interface IInvoiceController
     {
-        System.Web.Mvc.ActionResult Create(int CustomerID);
+        System.Web.Mvc.ActionResult Create(int? CustomerID);
         System.Web.Mvc.ActionResult Create(OSBOX.Data.Models.InvoiceModel invoice);
         System.Web.Mvc.ActionResult CreateNew(OSBOX.Data.Models.InvoiceModel invoice);
         System.Web.Mvc.ActionResult CreateNew(int? CustomerId, string Business_Name, string Customer_Account, int? Invoice_ID);

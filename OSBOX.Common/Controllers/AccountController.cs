@@ -307,7 +307,7 @@ namespace OSBOX.Common.Controllers
             {
 
                 //check if the ID_Code exists already
-                if(CustomerDB.GetAllCustomers.Where(s=>s.ID_Code == model.ID_Code).Any())
+                if(CustomerDB.GetAllCustomers.Where(s=>s.ID_Code == model.ID_Code).Any() || UserDB.Users.Where(s=>s.UserName == model.ID_Code).Any() )
                 { 
                    
                

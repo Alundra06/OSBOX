@@ -150,11 +150,12 @@ namespace OSBOX.CRM.Controllers
         }
 
         // GET: /Invoice/Create
-        public ActionResult Create(int CustomerID )
+        public ActionResult Create(int? CustomerID )
         {
 
-            ViewBag.CustomersList = new SelectList(CustomerDB.Customers, "CustomerId", "ID_Code", CustomerID);
+            ViewBag.CustomersList = new SelectList(CustomerDB.Customers.OrderBy(s => s.ID_Code), "CustomerId", "ID_Code", CustomerID);
             ViewBag.ServiceTypeList = new SelectList(ServiceTypeDB.GetAllServiceTypes, "ID", "ServiceTypeName");
+            
 
             return View();
         }
